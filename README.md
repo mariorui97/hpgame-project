@@ -11,6 +11,7 @@ A 2d game based on the Harry Potter movie saga - designed to module 0 of Ironhac
 ## Data Structure
 
 ### index.js
+  -
 
 ## Stages
 
