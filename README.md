@@ -19,6 +19,7 @@ A 2d game based on the Harry Potter movie saga - designed to module 1 of Ironhac
   - add a timer and make them faster with the timer
   - add a score and make the hitbox substract -1 to the lives
   - add a game over
+  - add multiple scenes
 
 ## Data Structure
 
