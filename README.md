@@ -3,11 +3,13 @@ A 2d game based on the Harry Potter movie saga - designed to module 0 of Ironhac
 
 ## Screenshots
 <img width="450px" src="images/harry potter game.png">
+
 ## MVP (DOM - CANVAS)
 
 ## Backlog
 
 ## Data Structure
+
 ### index.js
 
 ## Stages
