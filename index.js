@@ -1,8 +1,5 @@
 let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext('2d');
-canvas.style.border = '2px solid black';
-
-
 
 let spell = new Image();
 spell.src = './images/34.gif'
@@ -16,8 +13,8 @@ voldemort.src = './images/voldemort.png'
 let background = new Image();
 background.src = './images/hogwarts.png';
 
-let spellX = 600, spellY = 400;
-let incX = 2, incY = 2;
+let spellX = 1150, spellY = 350;
+let incX = 5, incY = 2;
 
 let harryX = 0; harryY = 300;
 let isUp = false; isDown = false;
@@ -32,20 +29,20 @@ let score = 0;
 
 
 const draw = () => {
-    ctx.drawImage(background, 0, 0, 1000, 800)
+    ctx.drawImage(background, 0, 0, 1500, 800)
     
-    ctx.drawImage(harry, harryX, harryY, 200, 200)
+    ctx.drawImage(harry, harryX, harryY)
 
     ctx.drawImage(spell, spellX, spellY)
 
-    ctx.drawImage(voldemort, 750, 280, 200, 200) 
+    ctx.drawImage(voldemort, 1300, 280, 200, 200) 
 
     backgroundMusic.play()
     backgroundMusic.volume = 1
 }
 
 const collision = () => {
-    if(harryX + harry.width == spellX + spell.width + incX){ //collisions still not right 
+    if((harryX + harry.width >= spellX + spell.height + 50) && (harryX + harry.width >= spellY + spellY.height)){ //collisions still not right 
         isGameOver = true
     }
 }
