@@ -1,6 +1,8 @@
 let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext('2d');
 
+let restartButton = document.querySelector("#restart")
+
 let spell = new Image();
 spell.src = './images/spell.png'
 
@@ -13,8 +15,11 @@ voldemort.src = './images/voldemort.png'
 let background = new Image();
 background.src = './images/hogwarts.png';
 
+let gameOverBg = new Image();
+gameOverBg.src = './images/asd.png';
+
 let spellX = 1150, spellY = 350;
-let incX = 5;
+let incX = 10;
 
 let harryX = 0; harryY = 300;
 let isUp = false; isDown = false;
@@ -28,17 +33,17 @@ let spells = [
 
 let intervalId = 0;
 let isGameOver = false;
-let score = 0;
 
 
 
 const draw = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.length)
     ctx.drawImage(background, 0, 0, 1500, 800)
     
     ctx.drawImage(harry, harryX, harryY)
 
     ctx.drawImage(voldemort, 1300, 280, 200, 200) 
-
+    
     for (let i = 0; i<spells.length; i++){
         ctx.drawImage(spell, spells[i].x, spells[i].y)  
         
@@ -47,10 +52,12 @@ const draw = () => {
             spells[i].y = Math.floor(Math.random() * canvas.height)
         }
     }
-
+    
+    restartButton.style.display = 'none'
     //backgroundMusic.play()
     backgroundMusic.volume = 1
 }
+
 
 const collision = () => {
     for (let i = 0; i<spells.length; i++){
@@ -61,16 +68,40 @@ const collision = () => {
 
 }
 
+const score = () => { //still not working
+    let score = 0;
+    let counter = setInterval(score++, 1000) // still not working
+
+    document.getElementById('score').innerHTML = counter
+} 
+
+
+
+const gameOverScreen = () =>{
+    collision()
+    
+    if (isGameOver){
+        backgroundMusic.pause()
+        cancelAnimationFrame(draw) 
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.drawImage(gameOverBg, 0, 0, 1500, 800)
+        restartButton.style.display = 'block'
+    } else {
+        intervalId = requestAnimationFrame(animation)
+    } 
+}
 
 
 const animation = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    draw()       
 
+    draw()   
 
-    for (let i = 0; i<spells.length; i++){
-        //let increasing = setInterval((incX = incX++), 1000)
-        spells[i].x = spells[i].x - incX
+    //score()    
+    // let speed = setInterval((incX+=2), 1000) // speed function
+
+    for (let i = 0; i<spells.length; i++){        
+        spells[i].x = spells[i].x - incX //implement 'speed' here when its fixed
     }
   
 
@@ -78,17 +109,9 @@ const animation = () => {
         harryY = harryY - 10
     } else if (isDown){
         harryY = harryY + 10
-    }
+    }    
 
-    collision()
-
-    if (isGameOver){
-        backgroundMusic.pause()
-        cancelAnimationFrame(draw)
-    } else {
-        intervalId = requestAnimationFrame(animation)
-    } 
-    
+    gameOverScreen()
 }
 
 animation()
@@ -96,7 +119,6 @@ animation()
 window.addEventListener('load', () => {
     draw() 
     
-
     document.addEventListener('keydown', (event) => {
         if (event.key == 'ArrowDown' || event.key == 's'){
             isUp = false;
@@ -111,6 +133,12 @@ window.addEventListener('load', () => {
     document.addEventListener('keyup', () => {
         isUp = false;
         isDown = false;
+    })
+
+    restartButton.addEventListener('click' , () => {       
+        ctx.clearRect(0, 0, canvas.width, canvas.height) 
+        draw()
+
     })
     
 })
