@@ -54,7 +54,7 @@ const draw = () => {
     }
     
     restartButton.style.display = 'none'
-    //backgroundMusic.play()
+    backgroundMusic.play()
     backgroundMusic.volume = 1
 }
 
@@ -62,7 +62,7 @@ const draw = () => {
 const collision = () => {
     for (let i = 0; i<spells.length; i++){
         if((harryX + harry.width >= spells[i].x + 60) && (harryY < spells[i].y && harryY + harry.height > spells[i].y + spell.height)){  //checking (X) checking (Y)
-            isGameOver = true
+            isGameOver = true            
         }
     }
 
@@ -70,11 +70,9 @@ const collision = () => {
 
 const score = () => { //still not working
     let score = 0;
-    let counter = setInterval(score++, 1000) // still not working
-
-    document.getElementById('score').innerHTML = counter
+    let counter = setInterval(score++, 1000) // still not working  
+    document.getElementById('score').innerHTML = Math.floor(counter / 100)
 } 
-
 
 
 const gameOverScreen = () =>{
@@ -86,6 +84,7 @@ const gameOverScreen = () =>{
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         ctx.drawImage(gameOverBg, 0, 0, 1500, 800)
         restartButton.style.display = 'block'
+
     } else {
         intervalId = requestAnimationFrame(animation)
     } 
@@ -94,7 +93,7 @@ const gameOverScreen = () =>{
 
 const animation = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-
+    score()
     draw()   
 
     //score()    
@@ -137,8 +136,15 @@ window.addEventListener('load', () => {
 
     restartButton.addEventListener('click' , () => {       
         ctx.clearRect(0, 0, canvas.width, canvas.height) 
-        draw()
-
+        isGameOver = false;
+        spells = [
+            {x: spellX, y: spellY},
+            {x: spellX, y: spellY + 200}
+        ]
+        animation()
+        
+        
+        
     })
     
 })
