@@ -1,7 +1,11 @@
 let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext('2d');
 
+let startButton = document.querySelector("#start")
 let restartButton = document.querySelector("#restart")
+let infoButton = document.querySelector("#info")
+let body = document.querySelector('body')
+
 
 let spell = new Image();
 spell.src = './images/spell.png'
@@ -17,6 +21,9 @@ background.src = './images/hogwarts.png';
 
 let gameOverBg = new Image();
 gameOverBg.src = './images/asd.png';
+
+let startBg = new Image();
+startBg.src = './images/start-background.jpg'
 
 let spellX = 1150, spellY = 350;
 let incX = 10;
@@ -35,6 +42,16 @@ let intervalId = 0;
 let isGameOver = false;
 
 
+const startScreen = () => {
+    ctx.drawImage(startBg, 0, 0, 1500, 800)
+    startButton.style.display = 'block'
+    body.style.backgroundColor = 'rgba(4,2,4,255)'     
+    restartButton.style.display = 'none'  
+    infoButton.style.display = 'block'     
+    
+    backgroundMusic.play()
+    backgroundMusic.volume = 1
+}
 
 const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.length)
@@ -53,9 +70,10 @@ const draw = () => {
         }
     }
     
-    restartButton.style.display = 'none'
-    backgroundMusic.play()
-    backgroundMusic.volume = 1
+    body.style.backgroundColor = 'white'
+    startButton.style.display = 'none'
+    restartButton.style.display = 'none'    
+    infoButton.style.display = 'none' 
 }
 
 
@@ -70,8 +88,8 @@ const collision = () => {
 
 const score = () => { //still not working
     let score = 0;
-    let counter = setInterval(score++, 1000) // still not working  
-    document.getElementById('score').innerHTML = Math.floor(counter / 100)
+    let counter = setInterval(score++, 1000) // kinda weird but works 
+    let points = document.getElementById('score').innerHTML = Math.floor(counter / 100)    
 } 
 
 
@@ -84,7 +102,7 @@ const gameOverScreen = () =>{
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         ctx.drawImage(gameOverBg, 0, 0, 1500, 800)
         restartButton.style.display = 'block'
-
+        
     } else {
         intervalId = requestAnimationFrame(animation)
     } 
@@ -103,7 +121,6 @@ const animation = () => {
         spells[i].x = spells[i].x - incX //implement 'speed' here when its fixed
     }
   
-
     if (isUp){
         harryY = harryY - 10
     } else if (isDown){
@@ -113,11 +130,9 @@ const animation = () => {
     gameOverScreen()
 }
 
-animation()
+window.addEventListener('load', () => {    
+    startScreen()
 
-window.addEventListener('load', () => {
-    draw() 
-    
     document.addEventListener('keydown', (event) => {
         if (event.key == 'ArrowDown' || event.key == 's'){
             isUp = false;
@@ -134,6 +149,11 @@ window.addEventListener('load', () => {
         isDown = false;
     })
 
+    startButton.addEventListener('click' , () => {  
+        draw()
+        animation()
+    })
+
     restartButton.addEventListener('click' , () => {       
         ctx.clearRect(0, 0, canvas.width, canvas.height) 
         isGameOver = false;
@@ -141,10 +161,8 @@ window.addEventListener('load', () => {
             {x: spellX, y: spellY},
             {x: spellX, y: spellY + 200}
         ]
-        animation()
+        startScreen()
         
         
-        
-    })
-    
+    })    
 })

@@ -15,7 +15,20 @@ canvas {
     bottom: 15px ;
     left:50%;
     right:50%;
-
   }
 
+  #start{
+    position: absolute;
+    bottom: -100px ;
+    left:50%;
+    right:50%;
 
+  } 
+  
+  #info{
+    position: absolute;
+    bottom: 15% ;
+    right:15%;
+    width: 64px;
+    height: 66px;
+  }
