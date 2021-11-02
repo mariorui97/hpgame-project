@@ -6,16 +6,21 @@
     <title>the boy who coded</title>    
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/145.png">
+    <link href="http://fonts.cdnfonts.com/css/harry-potter" rel="stylesheet">
 </head>
-<body>
+
+<body>    
     <canvas id="myCanvas" width="1500" height="800"></canvas>
-    <span>Score:<p id="score">0</p></span>
-    <img id = "info" type = "image" src="./images/info.png" />
+    <span>Score: <span id="score">0</span></span>
+    <img id = "info" type = "image" src="./images/info.png" data-tooltip="Text" />
     <footer>
         <img id = "start" type = "image" src= "./images/lumos.gif" />
         <img id = "restart" type = "image" src= "./images/stone.png" />
+        <img id = "tooltip" type = "image" src= "./images/info_tooltip.png" />
     </footer>
+
     <script src="index.js"></script>
 </body>
+
 
 </html>
