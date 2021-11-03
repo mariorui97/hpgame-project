@@ -71,7 +71,7 @@ const startScreen = () => {
     infoButton.style.display = 'block'  
      
     backgroundMusic.play()
-    backgroundMusic.volume = 1
+    backgroundMusic.volume = 0.5
 }
 
 const pontuation = () => { 
