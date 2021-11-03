@@ -44,6 +44,14 @@ canvas {
     height: 160px;
   }
 
+  #mantle{
+    position: absolute;
+    bottom: 90px ;
+    right: 11.5%;
+    border: 2px solid black;
+  }
+
+
 
   span{
     font-size: 50px;
