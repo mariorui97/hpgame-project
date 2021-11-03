@@ -1,5 +1,5 @@
 # Harry Potter - the boy who coded
-A 2d game based on the Harry Potter movie saga - designed to module 1 of Ironhack Bootcamp, where Harry Potter faces his enemies (well, initially only *the one whose name shall not be pronounced*) in a duel to the death - dodging avada kedavras as long as possible. Harry haves 7 lives (number of horcruxes) and if you get hit by a spell, you will lose one. Time's increasing also increase your points.
+A 2d game based on the Harry Potter movie saga - designed to module 1 of Ironhack Bootcamp, where Harry Potter faces his enemies (well, initially only *the one whose name shall not be pronounced*) in a duel to the death - dodging avada kedavras as long as possible. If Harry gots hit by a spell he will die. Time's increasing also increase your points.
 
 ## Screenshots
 <img width="450px" src="images/harry potter game.png">
