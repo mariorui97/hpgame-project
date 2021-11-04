@@ -111,7 +111,10 @@ const draw = () => {
     body.style.backgroundColor = 'white'
     startButton.style.display = 'none'
     restartButton.style.display = 'none'   
-    infoButton.style.display = 'none'
+    infoButton.style.display = 'none'            
+    toolTip.style.display = 'none'
+    closeInfo.style.display = 'none' 
+        
 }
 
 const collision = () => {
@@ -226,10 +229,6 @@ window.addEventListener('load', () => {
     startButton.addEventListener('click' , () => {  
         draw()
         animation()
-        
-    toolTip.style.display = 'none'
-    closeInfo.style.display = 'none' 
-        
     })
 
     infoButton.addEventListener('click', () => {   
