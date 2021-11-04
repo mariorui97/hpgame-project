@@ -87,9 +87,6 @@ const pontuation = () => {
 const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.length)
     ctx.drawImage(background, 0, 0, 1500, 800) 
-
-    toolTip.style.display = 'none'
-    closeInfo.style.display = 'none' 
     
     if ((points.innerHTML > 40) && (invisible == true)){
         ctx.drawImage(warning, 270, 150)
@@ -229,6 +226,9 @@ window.addEventListener('load', () => {
     startButton.addEventListener('click' , () => {  
         draw()
         animation()
+        
+    toolTip.style.display = 'none'
+    closeInfo.style.display = 'none' 
         
     })
 
