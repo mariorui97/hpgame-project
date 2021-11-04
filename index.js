@@ -113,8 +113,7 @@ const draw = () => {
     restartButton.style.display = 'none'   
     infoButton.style.display = 'none'            
     toolTip.style.display = 'none'
-    closeInfo.style.display = 'none' 
-        
+    closeInfo.style.display = 'none'      
 }
 
 const collision = () => {
