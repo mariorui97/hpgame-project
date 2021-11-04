@@ -16,8 +16,12 @@ toolTip.style.display = 'none'
 let mantle = document.querySelector("#mantle")
 mantle.style.display = 'none'
 
+let closeInfo = document.querySelector("#closeinfo")
+closeInfo.style.display = 'none'
+
 let body = document.querySelector('body')
 let points = document.getElementById('score')
+
 
 let spell = new Image();
 spell.src = './images/spell.png'
@@ -40,13 +44,15 @@ startBg.src = './images/start-background.jpg'
 let invisHarry = new Image();
 invisHarry.src = './images/harryInvisible.png'
 
+let warning = new Image();
+warning.src = './images/warning.png'
+
 let spellX = 1250, spellY = 350;
 let incX = 1;
 
 let harryX = 0; harryY = 300, harryXInvis = 0;
 let isUp = false; isDown = false;
 
-let backgroundMusic = new Audio('./sounds/harrypotter-theme.mp3')
 let dead = new Audio('./sounds/dead.mp3')
 
 
@@ -68,10 +74,9 @@ const startScreen = () => {
     startButton.style.display = 'block'
     body.style.backgroundColor = 'rgba(4,2,4,255)'     
     restartButton.style.display = 'none' 
-    infoButton.style.display = 'block'  
-     
-    backgroundMusic.play()
-    backgroundMusic.volume = 0.5
+    infoButton.style.display = 'block'
+    dead.pause();
+    dead.currentTime = 0;
 }
 
 const pontuation = () => { 
@@ -79,10 +84,16 @@ const pontuation = () => {
     points.innerHTML = score    
 } 
 
-
 const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.length)
-    ctx.drawImage(background, 0, 0, 1500, 800)
+    ctx.drawImage(background, 0, 0, 1500, 800) 
+    
+    if ((points.innerHTML > 40) && (invisible == true)){
+        ctx.drawImage(warning, 270, 150)
+        if ((points.innerHTML > 50) && (invisible == true)){
+            isGameOver = true
+        }
+    } 
 
     invisible ? ctx.drawImage(invisHarry, harryXInvis, harryY) : ctx.drawImage(harry, harryX, harryY) 
 
@@ -111,6 +122,7 @@ const collision = () => {
     }        
 }
 
+
 const gameOverScreen = () =>{
     collision()
     
@@ -120,7 +132,6 @@ const gameOverScreen = () =>{
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         ctx.drawImage(gameOverBg, 0, 0, 1500, 800)
         restartButton.style.display = 'block'
-        backgroundMusic.volume = 0.1
         dead.play()
     } else {        
         intervalId = requestAnimationFrame(animation)
@@ -170,8 +181,7 @@ const animation = () => {
         harryY = harryY - 15
     } else if ((isDown) && (harryY+harry.height<canvas.height && harryY+invisHarry.height<canvas.height)){
         harryY = harryY + 15
-    }    
-    
+    }       
     
 
     gameOverScreen()       
@@ -181,10 +191,10 @@ window.addEventListener('load', () => {
     startScreen()
 
     document.addEventListener('keydown', (event) => {
-        if (event.key == 'ArrowDown' || event.key == 's'){
+        if (event.key == 'ArrowDown' || event.key == 's' || event.key == 'S' ){
             isUp = false;
             isDown = true;
-        } else if (event.key == 'ArrowUp' || event.key == 'w'){
+        } else if (event.key == 'ArrowUp' || event.key == 'w' || event.key == 'W'){
             isUp = true;
             isDown = false;
         }
@@ -197,7 +207,7 @@ window.addEventListener('load', () => {
 
     document.addEventListener('keydown', (event) => {
         if (event.key == 'h'){
-            if ((points.innerHTML >= 10) && (points.innerHTML <= 20)){
+            if ((points.innerHTML >= 30) && (points.innerHTML <= 40)){
                 invisible = true;
                 harryX = -500;
                 mantle.style.display = 'block'
@@ -209,23 +219,23 @@ window.addEventListener('load', () => {
         if (event.key == 'h'){
             invisible = false;
             harryX = 0;
-            mantle.style.display = 'none'            
-        } 
+            mantle.style.display = 'none'                       
+        }
     })
 
     startButton.addEventListener('click' , () => {  
         draw()
-        animation()        
+        animation()
     })
 
-    infoButton.addEventListener('mousedown', () => {
+    infoButton.addEventListener('click', () => {   
         toolTip.style.display = 'block'
-
+        closeInfo.style.display = 'block'   
     })
 
-    infoButton.addEventListener('mouseup', () => {
+    closeInfo.addEventListener('click', () => {
         toolTip.style.display = 'none'
-        
+        closeInfo.style.display = 'none'        
     })
 
     restartButton.addEventListener('click' , () => {       

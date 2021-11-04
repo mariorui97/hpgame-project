@@ -22,10 +22,9 @@ canvas {
 
   #start{
     position: absolute;
-    bottom: -100px ;
+    bottom: 0px ;
     left:50%;
     right:50%;
-
   } 
   
   #info{
@@ -42,6 +41,7 @@ canvas {
     right: 15%;
     width: 350px;
     height: 160px;
+
   }
 
   #mantle{
@@ -60,9 +60,29 @@ canvas {
     pointer-events: none; 
   }
 
+  audio{
+    position: absolute;
+    width: 250px;
+    height: 30px;
+    bottom: 15px;
+    left: 10px;
+    filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(100%);
+  }
 
 
+  #closeinfo{
+    position: absolute;
+    bottom: 420px ;
+    right: 270px;
+    height: 20px;
+    width: 20px;
+  }
 
-
+  body{
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
   
 
