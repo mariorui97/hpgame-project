@@ -1,6 +1,7 @@
-/* body{
-  background-color: #2A623D;
-} */
+@font-face {
+  font-family: 'HarryPotter';
+  src: url(HARRP___.TTF) format('truetype');
+}
 canvas {
     position: absolute;
     top: 0px;
@@ -51,11 +52,9 @@ canvas {
     border: 2px solid black;
   }
 
-
-
   span{
     font-size: 50px;
-    font-family: 'Harry Potter', sans-serif;
+    font-family: 'HarryPotter', sans-serif;
     margin-right: 0px; 
     pointer-events: none; 
   }
