@@ -60,6 +60,8 @@ A 2d game based on the Harry Potter movie saga - designed to module 1 of Ironhac
 
 ### Trello: [link to trello](https://trello.com/b/UeUWBeLA/harry-potter-the-boy-who-coded)
 
+### Slides: [like to slides](https://docs.google.com/presentation/d/107iT9490iRpE5LpBHN7w9SfZgAGxeFGE6QBHxcigB7E/edit?usp=sharing)
+
 
 
 
