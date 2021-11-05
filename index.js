@@ -135,6 +135,8 @@ const gameOverScreen = () =>{
         ctx.drawImage(gameOverBg, 0, 0, 1500, 800)
         restartButton.style.display = 'block'
         dead.play()
+        mantle.style.display = 'none'
+        invisible = false;
     } else {        
         intervalId = requestAnimationFrame(animation)
     }     
