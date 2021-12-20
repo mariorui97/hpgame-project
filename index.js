@@ -72,7 +72,9 @@ let invisible = false;
 const startScreen = () => {      
     ctx.drawImage(startBg, 0, 0, 1500, 800)
     startButton.style.display = 'block'
-    body.style.backgroundColor = 'rgba(4,2,4,255)'     
+    body.style.backgroundColor = 'rgba(4,2,4,255)'
+    canvas.style.boxShadow = 'none'
+    canvas.style.border = 'none'
     restartButton.style.display = 'none' 
     infoButton.style.display = 'block'
     dead.pause();
@@ -113,7 +115,9 @@ const draw = () => {
     restartButton.style.display = 'none'   
     infoButton.style.display = 'none'            
     toolTip.style.display = 'none'
-    closeInfo.style.display = 'none'      
+    closeInfo.style.display = 'none'  
+    canvas.style.border = '2px solid #00000080'
+    canvas.style.boxShadow = '2px 2px 20px black';
 }
 
 const collision = () => {
